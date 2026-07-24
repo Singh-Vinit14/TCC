@@ -1,0 +1,16 @@
+{
+  "name": "Taad Cricket Club",
+  "short_name": "TCC",
+  "description": "Official Taad Cricket Club live scores, players, stats and gallery.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#07130d",
+  "theme_color": "#10b981",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

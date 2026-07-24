@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: #07130d;
+  color: #f8fafc;
+}
+
+body.light {
+  background: #f6fff9;
+  color: #07130d;
+}
+
+::selection {
+  background: rgba(246, 200, 95, 0.35);
+}
+
+.stadium-lights {
+  background:
+    radial-gradient(circle at 10% 0%, rgba(246, 200, 95, 0.28), transparent 18%),
+    radial-gradient(circle at 90% 0%, rgba(16, 185, 129, 0.24), transparent 18%),
+    linear-gradient(135deg, #07130d 0%, #0a1b12 48%, #12351f 100%);
+}
+
+.glass {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(8, 22, 14, 0.76);
+  backdrop-filter: blur(18px);
+}
+
+.light .glass {
+  border-color: rgba(7, 19, 13, 0.1);
+  background: rgba(255, 255, 255, 0.88);
+}
