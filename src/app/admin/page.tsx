@@ -3,7 +3,7 @@
 import { signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { Upload, UserPlus, Newspaper, Trophy } from "lucide-react";
 import { useState } from "react";
-import { auth } from "@/lib/firebase";
+import { auth, firebaseReady } from "@/lib/firebase";
 import { players } from "@/lib/sample-data";
 import { Section } from "@/components/ui/Section";
 
@@ -14,6 +14,10 @@ export default function AdminPage() {
 
   async function login() {
     try {
+      if (!auth) {
+        setMessage("Firebase config missing hai. Vercel Environment Variables add karo.");
+        return;
+      }
       await signInWithEmailAndPassword(auth, email, password);
       setMessage("Logged in. Admin actions can now write to Firebase.");
     } catch (error) {
@@ -22,6 +26,10 @@ export default function AdminPage() {
   }
 
   async function logout() {
+    if (!auth) {
+      setMessage("Firebase config missing hai.");
+      return;
+    }
     await signOut(auth);
     setMessage("Logged out.");
   }
@@ -31,7 +39,7 @@ export default function AdminPage() {
       <div className="grid gap-5 xl:grid-cols-[360px_1fr]">
         <div className="glass rounded-lg p-6">
           <h3 className="text-xl font-black">Secure Login</h3>
-          <p className="mt-2 text-sm text-slate-400">{message}</p>
+          <p className="mt-2 text-sm text-slate-400">{firebaseReady ? message : "Firebase config missing hai. Admin login deploy ke baad env vars se enable hoga."}</p>
           <div className="mt-5 grid gap-3">
             <input value={email} onChange={(event) => setEmail(event.target.value)} placeholder="Email" className="rounded-lg border border-white/10 bg-white/5 px-4 py-3 outline-none focus:border-turf" />
             <input value={password} onChange={(event) => setPassword(event.target.value)} placeholder="Password" type="password" className="rounded-lg border border-white/10 bg-white/5 px-4 py-3 outline-none focus:border-turf" />
